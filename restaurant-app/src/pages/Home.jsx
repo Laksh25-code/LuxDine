@@ -1,20 +1,19 @@
 import React from 'react';
-import Navbar from '../components/Navbar';
+import Header from '../components/Header';
+import Hero from '../components/Hero';
 
 const Home = () => {
-  const palette = {
-    background: '#121212',
-    textPrimary: '#F5F5F5',
-    textSecondary: '#A9A9A9',
-  };
-
   return (
-    <div style={{ backgroundColor: palette.background, minHeight: '100vh' }}>
-      <Navbar />
-       <div>
-       
-       </div>
-    </div>
+    <>
+      <Header />
+      <main>
+        <Hero />
+        <div id="about" className="h-screen bg-surface"></div>
+        <div id="whats-new" className="h-screen bg-background"></div>
+        <div id="gallery" className="h-screen bg-surface"></div>
+        <div id="contact" className="h-screen bg-background"></div>
+      </main>
+    </>
   );
 };
 
