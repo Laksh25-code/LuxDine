@@ -1,0 +1,27 @@
+/* Responsive Design */
+
+/* Mobile devices */
+@media (max-width: 480px) {
+  /* Login and Registration Forms */
+  div[style*="width: 350px"] {
+    width: 90% !important;
+    padding: 1.5rem !important;
+  }
+
+  h2 {
+    font-size: 1.5rem !important;
+  }
+}
+
+/* Tablets */
+@media (min-width: 481px) and (max-width: 768px) {
+  /* Login and Registration Forms */
+  div[style*="width: 350px"] {
+    width: 70% !important;
+  }
+}
+
+/* Laptops and Desktops */
+@media (min-width: 769px) {
+  /* No changes needed for larger screens as the base styles are for them */
+}
