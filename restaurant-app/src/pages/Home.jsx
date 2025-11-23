@@ -1,18 +1,22 @@
 import React from 'react';
-import Header from '../components/Header';
 import Hero from '../components/Hero';
+import Discounts from '../components/Discounts';
+import WhatsNew from '../components/WhatsNew';
+import Footer from '../components/Footer';
+import About from '../components/About';
 
 const Home = () => {
   return (
     <>
-      <Header />
       <main>
         <Hero />
-        <div id="about" className="h-screen bg-surface"></div>
-        <div id="whats-new" className="h-screen bg-background"></div>
-        <div id="gallery" className="h-screen bg-surface"></div>
-        <div id="contact" className="h-screen bg-background"></div>
+        <About />
+        <Discounts />
+        <WhatsNew />
+        <div id="gallery" style={{ minHeight: '60vh', background:'var(--bg)' }}></div>
+        <div id="contact" style={{ minHeight: '40vh', background:'var(--surface)' }}></div>
       </main>
+      <Footer />
     </>
   );
 };

@@ -1,26 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { useNavigate, Link } from 'react-router-dom';
-import AuthCard from '../components/AuthCard'; // Assuming AuthCard will be created later
+import { useNavigate } from 'react-router-dom';
+import AuthCard from '../components/AuthCard';
 
 const AuthPage = () => {
-  const { login, register, viewAsGuest, user, isGuest } = useAuth();
+  const { user, isGuest } = useAuth();
   const navigate = useNavigate();
 
-  // Redirect if already authenticated
-  useEffect(() => {
-    if (user || isGuest) {
-      navigate('/');
-    }
-  }, [user, isGuest, navigate]);
+  useEffect(()=>{
+    if(user || isGuest) navigate('/');
+  },[user,isGuest,navigate]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-charcoal-deep">
-      <AuthCard
-        onLogin={login}
-        onRegister={register}
-        onViewAsGuest={viewAsGuest}
-      />
+    <div style={{ minHeight: '100vh', display:'flex', alignItems:'center', justifyContent:'center', background: 'var(--bg)' }}>
+      <AuthCard />
     </div>
   );
 };

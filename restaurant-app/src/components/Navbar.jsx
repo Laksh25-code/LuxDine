@@ -1,77 +1,48 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 const Navbar = () => {
-  const palette = {
-    accent: "#CAA86B",
-    surface: "#1F1F1F",
-    textPrimary: "#F5F5F5",
-  };
+  const { user, isGuest, logout } = useAuth();
 
   return (
-    <nav
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: "1rem 2rem",
-        backgroundColor: palette.surface,
-        boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
-      }}
-    >
-      <Link
-        to="/"
-        style={{
-          textDecoration: "none",
-          color: palette.accent,
-          fontSize: "1.5rem",
-          fontWeight: "bold",
-        }}
-      >
-        LuxDine
-      </Link>
-
-      <div>
-        <Link to="/" style={{ textDecoration: "none", color: palette.textPrimary, marginRight: "1rem" }}>
-        Home        
+    <header className="header">
+      <div className="container header-inner">
+        <Link to="/" className="brand">
+          <div style={{width:36,height:36,borderRadius:8,background:'var(--accent)',display:'flex',alignItems:'center',justifyContent:'center',color:'#0f0f0f',fontWeight:800}}>LD</div>
+          <span>LuxDine</span>
         </Link>
 
-        <Link to="/" style={{ textDecoration: "none", color: palette.textPrimary, marginRight: "1rem" }}>
-        About       
-        </Link>
+        <nav className="nav" aria-label="Primary">
+          <a href="#hero">Home</a>
+          <a href="#about">About</a>
+          <a href="#whats-new">Whats New</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#contact">Contact</a>
+        </nav>
 
-        <Link to="/" style={{ textDecoration: "none", color: palette.textPrimary, marginRight: "1rem" }}>
-        Whats New       
-        </Link>
-
-        <Link to="/" style={{ textDecoration: "none", color: palette.textPrimary, marginRight: "1rem" }}>
-        Gallery        
-        </Link>
-
-        <Link to="/" style={{ textDecoration: "none", color: palette.textPrimary, marginRight: "1rem" }}>
-        Contact        
-        </Link>
-        
+        <div className="auth-actions">
+          {user ? (
+            <>
+              <span style={{ color: 'var(--muted)' }}>{user.name || user.email}</span>
+              <button onClick={logout} style={{ background:'transparent',border:'none',color:'var(--muted)',cursor:'pointer' }}>Logout</button>
+            </>
+          ) : isGuest ? (
+            <span style={{ color: 'var(--muted)' }}>Guest</span>
+          ) : (
+            <Link to="/auth" style={{ color: 'var(--text)' }}>
+              <lord-icon
+                src="https://cdn.lordicon.com/bhfukwzjk.json"
+                trigger="hover"
+                colors="primary:#121331,secondary:#08a88a"
+                style={{width:"20px",height:"20px", verticalAlign: "middle", marginRight: "5px"}}>
+              </lord-icon>
+              Login / Register
+            </Link>
+          )}
+        </div>
       </div>
-      <div>
-        <Link
-          to="/login"
-          style={{
-            textDecoration: "none",
-            color: palette.textPrimary,
-            marginRight: "1rem",
-          }}
-        >
-          Login
-        </Link>
-        <Link
-          to="/register"
-          style={{ textDecoration: "none", color: palette.textPrimary }}
-        >
-          Register
-        </Link>
-      </div>
-    </nav>
+    </header>
   );
 };
 
